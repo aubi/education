@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+The MIT License
+
+Copyright 2024 aubi.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Table Sample</title>
+    </h:head>
+    <h:body>
+        <a href="index.xhtml">Home</a>
+        <h1>Table Sample - Partial Update</h1>
+        <h:form id="listform">
+            <ul>
+                <li>SELECT &ndash; select a car, displayed at the bottom, refresh only detail (Partial Page Update)</li>
+                <li>Detail &ndash; select a car, display on a new page (watch url, includes identification)</li>
+            </ul>
+            <p>
+                <p:dataTable id="carTable" value="#{tableCarsBean.carsList}" var="car">
+                    <p:column headerText="Registration" sortBy="#{car.registration}" sortable="true">
+                        #{car.registration}
+                    </p:column>
+                    <p:column headerText="Manufacturer" sortBy="#{car.manufacturer}">
+                        #{car.manufacturer}
+                    </p:column>
+                    <p:column headerText="Assembly Date" sortBy="#{car.assembly}">
+                        #{car.assembly}
+                    </p:column>
+                    <p:column headerText="Color">
+                        <h:outputText style="color: #{car.color}" value="#{car.color}" />
+                    </p:column>
+                    <p:column headerText="Action">
+                        <p:commandButton value="SELECT" action="#{tableCarsBean.selectCar}" update="listform:selected" />
+                        &nbsp;
+                        <p:link value="Detail" outcome="table-bookmarkable-detail">
+                            <f:param name="reg" value="#{car.registration}" />
+                        </p:link>
+                    </p:column>
+                </p:dataTable>
+            </p>
+            <h:panelGroup id="selected" >
+                <h:panelGroup id="selected-car" rendered="#{not empty tableCarsBean.selectedCar}">
+                    <p>Selected car: #{tableCarsBean.selectedCar.registration}, #{tableCarsBean.selectedCar.manufacturer}, assembled #{tableCarsBean.selectedCar.assembly}</p>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{empty tableCarsBean.selectedCar}">
+                    <p>No car is selected.</p>
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:form>
+    </h:body>
+</html>
