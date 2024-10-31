@@ -23,12 +23,12 @@
  */
 package net.aubrecht.jakarta.faces.introduction.faces;
 
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.validator.ValidatorException;
-import jakarta.faces.view.ViewScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,14 +40,14 @@ import java.util.List;
  * @author aubi
  */
 @Named(value = "calculateWithValidationsBean")
-@ViewScoped
+@SessionScoped
 public class CalculateWithValidationsBean implements Serializable {
 
     private Long input1 = null;
     private Long input2 = null;
     private Long result = null; // null means not calculated
 
-    List<String> explanation = null;
+    List<String> explanation = new ArrayList<>();
 
     /**
      * Creates a new instance of GCDBean
