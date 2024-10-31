@@ -35,9 +35,9 @@ import jakarta.enterprise.context.RequestScoped;
 @RequestScoped
 public class CalculateBean {
 
-    private Long input1 = null;
-    private Long input2 = null;
-    private Long result = null; // null means not calculated
+    private long input1 = 1;
+    private long input2 = 1;
+    private long result = 1; // null means not calculated
     /**
      * Creates a new instance of GCDBean
      */
