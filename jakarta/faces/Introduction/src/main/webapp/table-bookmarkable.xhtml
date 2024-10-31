@@ -67,11 +67,14 @@ THE SOFTWARE.
                     </h:column>
                 </h:dataTable>
             </p>
-            <h:panelGroup id="selected" rendered="#{not empty tableCarsBean.selectedCar}">
-                <p>Selected car: #{tableCarsBean.selectedCar.registration}, #{tableCarsBean.selectedCar.manufacturer}, assembled #{tableCarsBean.selectedCar.assembly}</p>
-            </h:panelGroup>
-            <h:panelGroup rendered="#{empty tableCarsBean.selectedCar}">
-                <p>No car is selected.</p>
+            <h:panelGroup id="selected" >
+                <h:panelGroup rendered="#{not empty tableCarsBean.selectedCar}">
+                    <p><h:commandButton value="CLEAR" action="#{tableCarsBean.clearSelectedCar}" /></p>
+                    <p>Selected car: #{tableCarsBean.selectedCar.registration}, #{tableCarsBean.selectedCar.manufacturer}, assembled #{tableCarsBean.selectedCar.assembly}</p>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{empty tableCarsBean.selectedCar}">
+                    <p>No car is selected.</p>
+                </h:panelGroup>
             </h:panelGroup>
         </h:form>
     </h:body>

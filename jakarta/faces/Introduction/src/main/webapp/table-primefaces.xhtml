@@ -63,6 +63,7 @@ THE SOFTWARE.
             </p>
             <h:panelGroup id="selected" >
                 <h:panelGroup id="selected-car" rendered="#{not empty tableCarsBean.selectedCar}">
+                    <p><p:commandButton action="#{tableCarsBean.clearSelectedCar}"  update="listform:selected" icon="pi pi-times" styleClass="rounded-button ui-button-danger ui-button-outlined"/></p>
                     <p>Selected car: #{tableCarsBean.selectedCar.registration}, #{tableCarsBean.selectedCar.manufacturer}, assembled #{tableCarsBean.selectedCar.assembly}</p>
                 </h:panelGroup>
                 <h:panelGroup rendered="#{empty tableCarsBean.selectedCar}">
